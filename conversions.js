@@ -38,12 +38,20 @@ function convertWeight() {
 
   let result = "";
 
-  if (single) result += "Single: " + converter(Number(single)) + "<br>";
+  if (single) result += "Result: " + converter(Number(single)) + "<br>";
 
   if (array) {
     const arr = array.split(",").map(Number);
-    result += "Array: " + converter(arr).join(", ");
+    result += "Results: " + converter(arr).join(", ");
   }
+
+  if (single && array) {
+  document.getElementById("weightResult").textContent =
+    "Please fill only ONE input: single OR batch.";
+  return;
+}
+
+
 
   document.getElementById("weightResult").innerHTML = result;
 }
@@ -59,12 +67,19 @@ function convertDistance() {
 
   let result = "";
 
-  if (single) result += "Single: " + converter(Number(single)) + "<br>";
+  if (single) result += "Result: " + converter(Number(single)) + "<br>";
 
   if (array) {
     const arr = array.split(",").map(Number);
-    result += "Array: " + converter(arr).join(", ");
+    result += "Results: " + converter(arr).join(", ");
   }
+
+  if (single && array) {
+  document.getElementById("distanceResult").textContent =
+    "Please fill only ONE input: single OR batch.";
+  return;
+}
+
 
   document.getElementById("distanceResult").innerHTML = result;
 }
@@ -80,12 +95,19 @@ function convertTemperature() {
 
   let result = "";
 
-  if (single) result += "Single: " + converter(Number(single)) + "<br>";
+  if (single) result += "Result: " + converter(Number(single)) + "<br>";
 
   if (array) {
     const arr = array.split(",").map(Number);
-    result += "Array: " + converter(arr).join(", ");
+    result += "Results: " + converter(arr).join(", ");
   }
+
+
+  if (single && array) {
+  document.getElementById("tempResult").textContent =
+    "Please fill only ONE input: single OR batch.";
+  return;
+}
 
   document.getElementById("tempResult").innerHTML = result;
 }

@@ -1,5 +1,15 @@
+<!-- Alexander Pacunayen & Abdi MOhameed, May 30 2026
+ Software Development Students
+ We started with a split in priorities I (Alexander) focused on designing the web page and Abdi did the JS conversion logic. 
+ After we had the rough draft done we were able to refine the outputs. Styling and clearer instruction were added to the input 
+ fields. Instead of a div after we wrapped the inputs in a form for better accessibility. 
+ As well as added some error handling. If both fields are filled in it returns an error saying one field ata time. This assignment was 
+ deployed using vercel. -->
+
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,78 +32,104 @@
     <h1 class="text-2xl font-bold text-center mb-6">Unit Conversion Calculator</h1>
 
     <!-- WEIGHT TAB -->
+
     <div id="weight" class="tab hidden">
       <h2 class="text-xl font-semibold mb-4">Weight Converter (KG ↔ LB)</h2>
 
-      <label>Single Value</label>
-      <input id="weightSingle" class="border p-2 w-full mb-3" />
+      <form onsubmit="convertWeight(); return false;">
 
-      <label>Array (comma separated)</label>
-      <input id="weightArray" class="border p-2 w-full mb-3" />
+        <label class="font-semibold">Single Value</label>
+        <input id="weightSingle" class="border p-2 w-full mb-3" />
+        <p class="text-xs text-gray-500 mb-4">For a single conversion</p>
 
-      <label>Direction</label>
-      <select id="weightDirection" class="border p-2 w-full mb-3">
-        <option value="kg-lb">KG → LB</option>
-        <option value="lb-kg">LB → KG</option>
-      </select>
+        <label class="font-semibold">Batch conversions (comma separated)</label>
+        <input id="weightArray" class="border p-2 w-full mb-3" />
+        <p class="text-xs text-gray-500 mb-4">For multiple conversions</p>
 
-      <button onclick="convertWeight()" class="w-full bg-blue-600 text-white py-2 rounded-lg">
-        Convert
-      </button>
+        <label class="font-semibold">Direction</label>
+        <select id="weightDirection" class="border p-2 w-full mb-3">
+          <option value="kg-lb">KG → LB</option>
+          <option value="lb-kg">LB → KG</option>
+        </select>
 
-      <p id="weightResult" class="mt-4 font-semibold"></p>
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg">
+          Convert
+        </button>
+
+        <p id="weightResult"
+          class="mt-4 p-4 bg-green-50 border border-green-300 text-green-800 rounded-lg font-semibold">
+        </p>
+
+      </form>
     </div>
+
 
     <!-- DISTANCE TAB -->
     <div id="distance" class="tab hidden">
       <h2 class="text-xl font-semibold mb-4">Distance Converter (KM ↔ MI)</h2>
 
-      <label>Single Value</label>
-      <input id="distanceSingle" class="border p-2 w-full mb-3" />
+      <form onsubmit="convertDistance(); return false;">
 
-      <label>Array (comma separated)</label>
-      <input id="distanceArray" class="border p-2 w-full mb-3" />
+        <label class="font-semibold">Single Value</label>
+        <input id="distanceSingle" class="border p-2 w-full mb-3" />
+        <p class="text-xs text-gray-500 mb-4">For a single conversion</p>
 
-      <label>Direction</label>
-      <select id="distanceDirection" class="border p-2 w-full mb-3">
-        <option value="km-mi">KM → MI</option>
-        <option value="mi-km">MI → KM</option>
-      </select>
+        <label class="font-semibold">Batch conversions (comma separated)</label>
+        <input id="distanceArray" class="border p-2 w-full mb-3" />
+        <p class="text-xs text-gray-500 mb-4">For multiple conversions</p>
 
-      <button onclick="convertDistance()" class="w-full bg-blue-600 text-white py-2 rounded-lg">
-        Convert
-      </button>
+        <label class="font-semibold">Direction</label>
+        <select id="distanceDirection" class="border p-2 w-full mb-3">
+          <option value="km-mi">KM → MI</option>
+          <option value="mi-km">MI → KM</option>
+        </select>
 
-      <p id="distanceResult" class="mt-4 font-semibold"></p>
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg">
+          Convert
+        </button>
+
+        <p id="distanceResult"
+          class="mt-4 p-4 bg-green-50 border border-green-300 text-green-800 rounded-lg font-semibold">
+        </p>
+
+      </form>
     </div>
+
 
     <!-- TEMPERATURE TAB -->
     <div id="temperature" class="tab hidden">
       <h2 class="text-xl font-semibold mb-4">Temperature Converter (°C ↔ °F)</h2>
 
-      <label>Single Value</label>
-      <input id="tempSingle" class="border p-2 w-full mb-3" />
+      <form onsubmit="convertTemperature(); return false;">
 
-      <label>Array (comma separated)</label>
-      <input id="tempArray" class="border p-2 w-full mb-3" />
+        <label class="font-semibold">Single Value</label>
+        <input id="tempSingle" class="border p-2 w-full mb-3" />
+        <p class="text-xs text-gray-500 mb-4">For a single conversion</p>
 
-      <label>Direction</label>
-      <select id="tempDirection" class="border p-2 w-full mb-3">
-        <option value="c-f">Celsius → Fahrenheit</option>
-        <option value="f-c">Fahrenheit → Celsius</option>
-      </select>
+        <label class="font-semibold">Batch conversions (comma separated)</label>
+        <input id="tempArray" class="border p-2 w-full mb-3" />
+        <p class="text-xs text-gray-500 mb-4">For multiple conversions</p>
 
-      <button onclick="convertTemperature()" class="w-full bg-blue-600 text-white py-2 rounded-lg">
-        Convert
-      </button>
+        <label class="font-semibold">Direction</label>
+        <select id="tempDirection" class="border p-2 w-full mb-3">
+          <option value="c-f">Celsius → Fahrenheit</option>
+          <option value="f-c">Fahrenheit → Celsius</option>
+        </select>
 
-      <p id="tempResult" class="mt-4 font-semibold"></p>
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg">
+          Convert
+        </button>
+
+        <p id="tempResult" class="mt-4 p-4 bg-green-50 border border-green-300 text-green-800 rounded-lg font-semibold">
+        </p>
+
+      </form>
     </div>
 
-  </div>
 
-  <!-- LINK TO JS FILE -->
-  <script src="conversions.js"></script>
+    <!-- LINK TO JS FILE -->
+    <script src="conversions.js"></script>
 
 </body>
+
 </html>
